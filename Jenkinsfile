@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'vm-local' }
+    agent { label 'ssh-agent' }
     environment {
         AZURE_USER = 'azureuser'
         AZURE_VM_HOST = '20.64.169.195'
