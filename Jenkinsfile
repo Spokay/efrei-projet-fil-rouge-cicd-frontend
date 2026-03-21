@@ -4,8 +4,6 @@ pipeline {
         AZURE_USER = 'azureuser'
         AZURE_VM_HOST = '20.64.169.195'
         IMAGE = 'registry.spokayhub.top/efrei-projet-fil-rouge-cicd-frontend'
-        IMAGE_TAG = ''
-        PREVIOUS_TAG = ''
     }
 
     stages {
