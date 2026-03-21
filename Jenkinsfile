@@ -62,9 +62,8 @@ pipeline {
                             echo "Déploiement de l'image : ${env.IMAGE}:${env.IMAGE_TAG}"
                         }
                         sh '''
-                            ssh -o StrictHostKeyChecking=no $AZURE_USER@$AZURE_VM_HOST \
-                                "docker login registry.spokayhub.top -u $REGISTRY_USER --password-stdin" \
-                                <<< "$REGISTRY_PASS"
+                            echo "$REGISTRY_PASS" | ssh -o StrictHostKeyChecking=no $AZURE_USER@$AZURE_VM_HOST \
+                                "docker login registry.spokayhub.top -u $REGISTRY_USER --password-stdin"
 
                             ssh -o StrictHostKeyChecking=no $AZURE_USER@$AZURE_VM_HOST "
                                 docker pull $IMAGE:$IMAGE_TAG &&
