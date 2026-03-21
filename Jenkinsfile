@@ -18,7 +18,9 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/Spokay/efrei-projet-fil-rouge-cicd-frontend.git'
                 script {
                     echo "Commit actuel : ${env.GIT_COMMIT}"
-                    env.IMAGE_TAG = "${env.BUILD_NUMBER}-${env.GIT_COMMIT.take(7)}"
+                    echo "Build number : ${env.BUILD_NUMBER}"
+                    def shortCommit = env.GIT_COMMIT.take(7)
+                    env.IMAGE_TAG = env.BUILD_NUMBER + '-' + shortCommit
                     echo "Image tag: ${env.IMAGE_TAG}"
                 }
             }
