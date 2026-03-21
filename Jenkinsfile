@@ -28,6 +28,7 @@ pipeline {
             steps {
                 sh '''
                     docker build \
+                        --platform linux/arm64 \
                         -t $IMAGE:$IMAGE_TAG \
                         -t $IMAGE:latest \
                         .
