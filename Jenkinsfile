@@ -50,7 +50,10 @@ pipeline {
         stage('Deploy') {
             steps {
                 sshagent(credentials: ['azure-ssh-credentials']) {
-                    withCredentials([usernamePassword(credentialsId: 'spokay-registry-credentials', usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASS')]) {
+                    withCredentials([
+                        usernamePassword(credentialsId: 'spokay-registry-credentials', usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASS'),
+                        file(credentialsId: 'fil-rouge-cicd-frontend-env', variable: 'ENV_FILE')
+                    ]) {
                         script {
                             env.PREVIOUS_TAG = sh(
                                 script: """
@@ -66,10 +69,12 @@ pipeline {
                             echo "$REGISTRY_PASS" | ssh -o StrictHostKeyChecking=no $AZURE_USER@$AZURE_VM_HOST \
                                 "docker login registry.spokayhub.top -u $REGISTRY_USER --password-stdin"
 
+                            scp -o StrictHostKeyChecking=no $ENV_FILE $AZURE_USER@$AZURE_VM_HOST:/home/$AZURE_USER/fil-rouge-cicd-frontend.env
+
                             ssh -o StrictHostKeyChecking=no $AZURE_USER@$AZURE_VM_HOST "
                                 docker pull $IMAGE:$IMAGE_TAG &&
                                 docker rm -f fil-rouge-cicd-frontend || true &&
-                                docker run -d -p 80:80 --name fil-rouge-cicd-frontend $IMAGE:$IMAGE_TAG &&
+                                docker run -d -p 80:80 --restart unless-stopped --name fil-rouge-cicd-frontend --env-file /home/$AZURE_USER/fil-rouge-cicd-frontend.env $IMAGE:$IMAGE_TAG &&
                                 sleep 5 &&
                                 docker inspect -f '{{.State.Running}}' fil-rouge-cicd-frontend | grep true
                             "
