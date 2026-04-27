@@ -1,0 +1,46 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.home-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+.home-container img {
+    width: 40%;
+}
+
+img.wordart {
+    height: 200px;
+    width: 400px;
+    margin: 0;
+}
+
+.home-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bernard {
+    display: flex;
+    flex-direction: column;
+}
+
+@media screen and (max-width: 768px) {
+    .home-container {
+        height: 100vh;
+    }
+
+    .home-content {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}

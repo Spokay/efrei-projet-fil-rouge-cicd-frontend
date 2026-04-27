@@ -1,0 +1,79 @@
+.page-container {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  font-family: Arial, sans-serif;
+  height: 100vh;
+}
+
+.end-game-wrapper {
+  position: relative;
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.money-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("../assets/images/transparent-raining-money.gif");
+  background-size: cover;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.end-game-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+  background-image: url("../assets/images/card-carpet.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.end-game-container img {
+  width: 180px;
+  height: auto;
+  margin: 20px auto;
+  display: block;
+}
+
+.end-game-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 50px;
+  width: 100%;
+}
+
+.end-game-button {
+  background-color: #007bff;
+  color: #fff;
+  width: 200px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.end-game-button:hover {
+  background-color: #0056b3;
+}

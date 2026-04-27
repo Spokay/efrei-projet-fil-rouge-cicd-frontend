@@ -1,0 +1,19 @@
+.user-board {
+    padding: 20px;
+  }
+  
+  .user-board table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-board th, .user-board td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+  }
+  
+  .user-board th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+  }
