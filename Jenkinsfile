@@ -120,7 +120,7 @@ pipeline {
                             ssh -o StrictHostKeyChecking=no $VM_USER@$VM_HOST "
                                 cd ~/.deploy &&
                                 IMAGE_TAG=$IMAGE_TAG docker compose -f $COMPOSE_FILE pull &&
-                                IMAGE_TAG=$IMAGE_TAG docker compose -f $COMPOSE_FILE up -d &&
+                                IMAGE_TAG=$IMAGE_TAG docker compose -f $COMPOSE_FILE up -d --force-recreate --remove-orphans &&
                                 sleep 5 &&
                                 docker inspect -f '{{.State.Running}}' $CONTAINER_NAME | grep true
                             "
