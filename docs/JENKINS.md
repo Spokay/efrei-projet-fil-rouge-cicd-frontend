@@ -62,11 +62,11 @@ Les fichiers sont déposés dans `/tmp/` à chaque déploiement (toujours access
 
 | Fichier | Destination |
 |---------|-------------|
-| `.env` (credential `frontend-{ENV}-env`) | `/tmp/frontend-{ENV}.env` |
-| `docker-compose.{ENV}.yml` | `/tmp/docker-compose.{ENV}.yml` |
+| `.env` (credential `frontend-{ENV}-env`) | `~/.deploy/frontend-{ENV}.env` |
+| `docker-compose.{ENV}.yml` | `~/.deploy/docker-compose.{ENV}.yml` |
 
-> Les variables d'environnement sont baked dans le container au `docker compose up`.
-> Le restart automatique (`unless-stopped`) n'a pas besoin des fichiers `/tmp/`.
+Le répertoire `~/.deploy/` est créé automatiquement par la pipeline (toujours owned par `$VM_USER`).
+Les variables d'environnement sont baked dans le container au `docker compose up` — le restart automatique n'a pas besoin des fichiers.
 
 ## Prérequis sur la VM cible
 
