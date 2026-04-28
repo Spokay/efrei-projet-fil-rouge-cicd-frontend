@@ -8,7 +8,7 @@ pipeline {
         string(name: 'REGISTRY', defaultValue: 'registry.spokayhub.top', description: 'URL du registry Docker')
         string(name: 'GIT_URL', defaultValue: 'https://github.com/Spokay/efrei-projet-fil-rouge-cicd-frontend.git', description: 'URL du dépôt Git')
         string(name: 'GIT_BRANCH', defaultValue: 'master', description: 'Branche à builder')
-        string(name: 'TARGET_PLATFORM', defaultValue: 'linux/arm64', description: 'Plateforme Docker build')
+        string(name: 'TARGET_PLATFORM', defaultValue: 'linux/amd64', description: 'Plateforme Docker build')
         string(name: 'VM_HOST', defaultValue: '172.179.237.62', description: 'IP ou hostname de la VM cible')
         string(name: 'VM_USER', defaultValue: 'azureuser', description: 'Utilisateur SSH sur la VM cible')
     }

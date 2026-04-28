@@ -45,7 +45,7 @@ Les credentials suivent le pattern `{ENV}-{type}` où `{ENV}` = `stg`, `prod`, e
 | `REGISTRY` | String | `registry.spokayhub.top` | URL du registry Docker |
 | `GIT_URL` | String | URL du repo | URL du dépôt Git à builder |
 | `GIT_BRANCH` | String | `master` | Branche Git à builder |
-| `TARGET_PLATFORM` | String | `linux/arm64` | Plateforme Docker build |
+| `TARGET_PLATFORM` | String | `linux/amd64` | Plateforme Docker build |
 | `VM_HOST` | String | — | IP ou hostname de la VM cible |
 | `VM_USER` | String | — | Utilisateur SSH sur la VM cible |
 
