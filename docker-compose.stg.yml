@@ -1,7 +1,7 @@
 services:
   frontend:
     image: registry.spokayhub.top/efrei-projet-fil-rouge-cicd-frontend:${IMAGE_TAG:-latest}
-    container_name: fil-rouge-cicd-frontend
+    container_name: efrei-projet-fil-rouge-cicd-frontend-stg
     ports:
       - "80:80"
     restart: unless-stopped
