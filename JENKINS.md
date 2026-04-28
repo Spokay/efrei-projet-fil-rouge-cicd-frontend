@@ -30,7 +30,7 @@ Les credentials suivent le pattern `{ENV}-{type}` où `{ENV}` = `stg`, `prod`, e
 | Credential ID | Type | Contenu |
 |---------------|------|---------|
 | `registry-credentials` | Username/Password | Login Docker registry (partagé tous envs) |
-| `{ENV}-ssh-credentials` | SSH Private Key | Clé SSH vers la VM cible |
+| `frontend-{ENV}-ssh-credentials` | SSH Private Key | Clé SSH vers la VM cible (frontend) |
 | `frontend-{ENV}-env` | Secret File | Fichier `.env` injecté dans le container |
 
 ## Paramètres pipeline
@@ -47,7 +47,7 @@ Les credentials suivent le pattern `{ENV}-{type}` où `{ENV}` = `stg`, `prod`, e
 
 ## Ajouter un environnement (ex: `prod`)
 
-1. Créer les credentials : `prod-ssh-credentials`, `frontend-prod-env`
+1. Créer les credentials : `frontend-prod-ssh-credentials`, `frontend-prod-env`
 2. Créer `docker-compose.prod.yml` à la racine du repo (copier `docker-compose.stg.yml`, adapter `container_name`)
 3. Ajouter `prod` dans le `choices` du paramètre `DEPLOY_ENV` dans le Jenkinsfile
 4. Lancer la pipeline avec `DEPLOY_ENV=prod`, `VM_HOST` et `VM_USER` de la VM prod

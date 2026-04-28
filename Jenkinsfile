@@ -40,6 +40,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
+                    apt-get install -y libatomic1 2>/dev/null || apk add --no-cache libatomic 2>/dev/null || true
                     npm ci
                     CI=true npm test -- --watchAll=false --coverage
                 '''
@@ -90,7 +91,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                sshagent(credentials: ["${params.DEPLOY_ENV}-ssh-credentials"]) {
+                sshagent(credentials: ["frontend-${params.DEPLOY_ENV}-ssh-credentials"]) {
                     withCredentials([
                         usernamePassword(credentialsId: 'registry-credentials', usernameVariable: 'REGISTRY_USER', passwordVariable: 'REGISTRY_PASS'),
                         file(credentialsId: "frontend-${params.DEPLOY_ENV}-env", variable: 'ENV_FILE')
