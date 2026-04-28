@@ -6,7 +6,7 @@ services:
       - "80:80"
     restart: unless-stopped
     env_file:
-      - ./efrei-projet-fil-rouge-cicd-frontend.env
+      - /tmp/frontend-stg.env
     logging:
       driver: json-file
       options:

@@ -5,7 +5,7 @@
 | Plugin | Usage |
 |--------|-------|
 | Git | Checkout |
-| NodeJS | Outil `node-25` |
+| NodeJS | Outil `node-20` |
 | Docker Pipeline | `withDockerRegistry` |
 | SonarQube Scanner | `withSonarQubeEnv`, `waitForQualityGate` |
 | SSH Agent | `sshagent` |
@@ -22,6 +22,10 @@
 
 - Serveur SonarQube nommé **`sonar-spokay`**
 - Webhook SonarQube → Jenkins configuré (requis pour `waitForQualityGate`)
+  - Dans SonarQube : `Administration → Webhooks → Create`
+  - URL : `https://<jenkins-url>/sonarqube-webhook/`
+
+Voir [SONAR.md](./SONAR.md) pour la configuration complète.
 
 ## Credentials requis
 
@@ -51,6 +55,18 @@ Les credentials suivent le pattern `{ENV}-{type}` où `{ENV}` = `stg`, `prod`, e
 2. Créer `docker-compose.prod.yml` à la racine du repo (copier `docker-compose.stg.yml`, adapter `container_name`)
 3. Ajouter `prod` dans le `choices` du paramètre `DEPLOY_ENV` dans le Jenkinsfile
 4. Lancer la pipeline avec `DEPLOY_ENV=prod`, `VM_HOST` et `VM_USER` de la VM prod
+
+## Déploiement — fichiers transférés
+
+Les fichiers sont déposés dans `/tmp/` à chaque déploiement (toujours accessible en écriture).
+
+| Fichier | Destination |
+|---------|-------------|
+| `.env` (credential `frontend-{ENV}-env`) | `/tmp/frontend-{ENV}.env` |
+| `docker-compose.{ENV}.yml` | `/tmp/docker-compose.{ENV}.yml` |
+
+> Les variables d'environnement sont baked dans le container au `docker compose up`.
+> Le restart automatique (`unless-stopped`) n'a pas besoin des fichiers `/tmp/`.
 
 ## Prérequis sur la VM cible
 
