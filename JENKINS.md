@@ -15,7 +15,7 @@
 
 | Nom | Type | Version |
 |-----|------|---------|
-| `node-25` | NodeJS Installation | 25.x |
+| `node-20` | NodeJS Installation | 20.x LTS |
 | `SonarScanner` | SonarQube Scanner | latest |
 
 ## Configuration SonarQube (`Manage Jenkins → Configure System`)

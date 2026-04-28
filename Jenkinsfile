@@ -1,7 +1,7 @@
 pipeline {
     agent { label 'ssh-agent' }
     tools {
-        nodejs 'node-25'
+        nodejs 'node-20'
     }
     parameters {
         choice(name: 'DEPLOY_ENV', choices: ['stg', 'prod'], description: 'Environnement cible')
@@ -40,7 +40,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh '''
-                    apt-get install -y libatomic1 2>/dev/null || apk add --no-cache libatomic 2>/dev/null || true
                     npm ci
                     CI=true npm test -- --watchAll=false --coverage
                 '''
