@@ -112,7 +112,7 @@ pipeline {
                             echo "$REGISTRY_PASS" | ssh -o StrictHostKeyChecking=no $VM_USER@$VM_HOST \
                                 "docker login $REGISTRY -u $REGISTRY_USER --password-stdin"
 
-                            ssh -o StrictHostKeyChecking=no $VM_USER@$VM_HOST "mkdir -p ~/.deploy"
+                            ssh -o StrictHostKeyChecking=no $VM_USER@$VM_HOST "mkdir -p ~/.deploy && rm -f ~/.deploy/frontend-${DEPLOY_ENV}.env"
 
                             scp -o StrictHostKeyChecking=no $ENV_FILE $VM_USER@$VM_HOST:~/.deploy/frontend-${DEPLOY_ENV}.env
                             scp -o StrictHostKeyChecking=no $COMPOSE_FILE $VM_USER@$VM_HOST:~/.deploy/$COMPOSE_FILE
